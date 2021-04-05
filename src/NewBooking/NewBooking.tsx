@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
-const NewBooking = () => {
+const NewBooking: React.FC = () => {
   return (
     <div className="NewBooking">
-        <p>NewBooking</p>
+      <p>NewBooking</p>
     </div>
-  );
+  )
 }
 
-export default NewBooking;
+export default NewBooking
