@@ -1,9 +1,9 @@
 import React from 'react'
-import { List, ListItem, ListItemText } from '@material-ui/core'
-import SettingList, { SettingListProps } from './SettingList'
+import { List } from '@material-ui/core'
+import SettingListItem, { SettingListItemProps } from './SettingListItem'
 
 const Setting: React.FC = () => {
-  const settingList: SettingListProps[] = [
+  const settingList: SettingListItemProps[] = [
     {
       title: 'Available Machines',
       path: '/setting/machines',
@@ -28,7 +28,7 @@ const Setting: React.FC = () => {
       <p>Setting</p>
       <List component="ul">
         {settingList.map((item, index) => (
-          <SettingList {...item} key={`settingListItem${index}`} />
+          <SettingListItem {...item} key={`settingListItem${index}`} />
         ))}
       </List>
     </div>

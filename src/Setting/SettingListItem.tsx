@@ -1,14 +1,14 @@
 import React from 'react'
-import { List, ListItem, ListItemText } from '@material-ui/core'
+import { ListItem, ListItemText } from '@material-ui/core'
 
-export interface SettingListProps {
+export interface SettingListItemProps {
   title: string
   path?: string
   admin: boolean
   handler?: () => void
 }
 
-const SettingList: React.FC<SettingListProps> = (props) => {
+const SettingListItem: React.FC<SettingListItemProps> = (props) => {
   return (
     <ListItem button>
       <ListItemText primary={props.title} />
@@ -16,4 +16,4 @@ const SettingList: React.FC<SettingListProps> = (props) => {
   )
 }
 
-export default SettingList
+export default SettingListItem
