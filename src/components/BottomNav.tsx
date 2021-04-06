@@ -4,8 +4,6 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
 import RestoreIcon from '@material-ui/icons/Restore'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import SettingsIcon from '@material-ui/icons/Settings'
-import BookingList from '../BookingList/BookingList'
-import NewBooking from '../NewBooking/NewBooking'
 import { useHistory } from 'react-router'
 
 const BottomNav: React.FC = () => {
