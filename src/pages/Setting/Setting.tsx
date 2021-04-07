@@ -8,8 +8,13 @@ const Setting: React.FC = () => {
   const settingList: SettingListItemProps[] = [
     {
       title: 'Available Machines',
-      path: '/setting/machines',
+      path: '/setting/allMachines',
       admin: false,
+    },
+    {
+      title: 'Add Machines',
+      path: '/setting/addMachines',
+      admin: true,
     },
     {
       title: 'People in Your Account',

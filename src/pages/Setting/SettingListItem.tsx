@@ -1,6 +1,8 @@
 import React from 'react'
 import { ListItem, ListItemText } from '@material-ui/core'
 import { useHistory } from 'react-router'
+import { useSelector } from 'react-redux'
+import { AppState } from '../../redux/store'
 
 export interface SettingListItemProps {
   title: string
@@ -10,6 +12,7 @@ export interface SettingListItemProps {
 }
 
 const SettingListItem: React.FC<SettingListItemProps> = (props) => {
+  const loginUser = useSelector((state: AppState) => state.userState.loginUser)
   const history = useHistory()
   const itemClickHandler = (path: string | undefined) => {
     if (path === undefined) {
@@ -18,7 +21,7 @@ const SettingListItem: React.FC<SettingListItemProps> = (props) => {
       history.push(path)
     }
   }
-  return (
+  return !props.admin || loginUser.isAdmin ? (
     <ListItem button>
       <ListItemText
         primary={props.title}
@@ -27,6 +30,8 @@ const SettingListItem: React.FC<SettingListItemProps> = (props) => {
         }}
       />
     </ListItem>
+  ) : (
+    <></>
   )
 }
 
