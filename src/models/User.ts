@@ -3,5 +3,6 @@ export interface User {
   groupId?: string
   name?: string
   email: string | null
+  isAdmin?: boolean
   isAuthenticated: boolean
 }
