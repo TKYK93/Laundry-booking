@@ -3,6 +3,9 @@ import { RootReducer } from '../store'
 import { Action } from 'redux'
 import firebase, { db } from '../../firebase'
 import { setLoginUser, setLogoutUser } from './userActions'
+import { User } from '../../models/User'
+import { clearMachines } from '../machineRedux/machineActions'
+import { clearBookings } from '../BookingRedux/bookingActions'
 
 export const loginThroughFirebase = (
   email: string,
@@ -11,10 +14,25 @@ export const loginThroughFirebase = (
   firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
+    .then(async (userCredential) => {
       const user = userCredential.user
       if (user !== null) {
-        dispatch(setLoginUser({ uid: user.uid, email: user.email, isAuthenticated: true }))
+        const userRef = db.collection('users').doc(user.uid)
+        const doc = await userRef.get()
+        if (!doc.exists) {
+          console.log('No such document in the database!')
+        } else {
+          const result = doc.data() as User
+          dispatch(
+            setLoginUser({
+              uid: user.uid,
+              email: user.email,
+              isAuthenticated: true,
+              isAdmin: result.isAdmin,
+              groupId: result.groupId,
+            })
+          )
+        }
       } else {
         window.alert('failed to login')
       }
@@ -75,6 +93,8 @@ export const logoutThroughFirebase = (): ThunkAction<void, RootReducer, undefine
     .signOut()
     .then(() => {
       dispatch(setLogoutUser())
+      dispatch(clearMachines())
+      dispatch(clearBookings())
       window.alert('logout success!')
     })
     .catch((error) => {
