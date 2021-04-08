@@ -3,9 +3,13 @@ import thunk from 'redux-thunk'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import { userReducer, UserState } from './userRedux/userReducer'
+import { MachineReducer, MachineState } from './machineRedux/machineReducer'
+import { BookingReducer, BookingState } from './BookingRedux/bookingReducer'
 
 export type AppState = {
   userState: UserState
+  machineState: MachineState
+  bookingState: BookingState
 }
 
 interface ExtendedWindow extends Window {
@@ -18,12 +22,14 @@ const composeReduxDevToolsEnhancers =
 
 export const rootReducer = combineReducers<AppState>({
   userState: userReducer,
+  machineState: MachineReducer,
+  bookingState: BookingReducer
 })
 
 const persistConfig = {
   key: 'laundry-booking',
   storage: storage,
-  whitelist: ['userState'],
+  whitelist: ['userState', 'machineState', 'BookingReducer'],
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
