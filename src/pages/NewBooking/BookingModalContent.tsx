@@ -1,16 +1,14 @@
 import { Button, createStyles, makeStyles, Theme } from '@material-ui/core'
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import RadioButtonsGroup from '../../components/RadioButtonsGroup';
-import { Booking } from '../../models/Booking';
-import { Machine } from '../../models/Machine';
-import { addBookingThroughFirebase } from '../../redux/BookingRedux/bookingThunk';
-import { AppState } from '../../redux/store';
-import { formattedDate, formattedTime } from '../../utils';
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Booking } from '../../models/Booking'
+import { addBookingThroughFirebase } from '../../redux/BookingRedux/bookingThunk'
+import { AppState } from '../../redux/store'
+import { formattedDate, formattedTime } from '../../utils'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    paper: {
+    wrapper: {
       position: 'absolute',
       width: 400,
       backgroundColor: theme.palette.background.paper,
@@ -18,9 +16,13 @@ const useStyles = makeStyles((theme: Theme) =>
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
     },
-
-  }),
-);
+    modal_buttons: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    },
+  })
+)
 
 const modalPosition = {
   top: '50%',
@@ -31,92 +33,67 @@ const modalPosition = {
 interface BookingModalContentProps {
   start: string | undefined
   end: string | undefined
+  machineId: string | undefined
+  machineName: string
   setOpenModal: (openModal) => void
 }
 
-const BookingModalContent: React.FC<BookingModalContentProps> = ({start, end, setOpenModal}) => {
+const BookingModalContent: React.FC<BookingModalContentProps> = ({
+  start,
+  end,
+  machineId,
+  machineName,
+  setOpenModal,
+}) => {
   const classes = useStyles()
   const dispatch = useDispatch()
-  const loginUser = useSelector((state:AppState) => state.userState.loginUser)
-  const machines = useSelector((state:AppState)=>state.machineState.machines)
-  const [machineName, setMachineName] = useState<string | undefined>(machines[0].name)
+  const loginUser = useSelector((state: AppState) => state.userState.loginUser)
 
-  const checkMachineId = ():string | undefined=> {
-    let machineId:string | undefined = undefined
-    machines.forEach(machine => {
-    if(machine.name === machineName){
-      machineId = machine.id
-    }})
-    return machineId
-  }
-
-  const registerHandler = () => {
-    const machineId = checkMachineId()
-    if(!machineId){
-      window.alert("Failed to book because there is something wrong with machine registration.")
+  const registerHandler = async () => {
+    if (!machineId) {
+      window.alert('Failed to book because there is something wrong with machine registration.')
       return
     }
 
-    if(!loginUser.groupId){
-      window.alert("Failed to book because there is something wrong with your groupID.")
-      return 
+    if (!loginUser.groupId) {
+      window.alert('Failed to book because there is something wrong with your groupID.')
+      return
     }
 
-    if(!start || !end){
-      window.alert("Failed to book because there is something wrong with start/end time.")
-      return 
+    if (!start || !end) {
+      window.alert('Failed to book because there is something wrong with start/end time.')
+      return
     }
 
-    const bookingData:Booking = {
+    const bookingData: Booking = {
       start: new Date(start).toISOString(),
       end: new Date(end).toISOString(),
       groupId: loginUser.groupId,
       personId: loginUser.uid,
-      machineId: machineId
+      machineId: machineId,
     }
 
-    dispatch(addBookingThroughFirebase(bookingData))
+   await dispatch(addBookingThroughFirebase(bookingData))
+   await setOpenModal(false)
   }
-
-  const machinesNames = ():Array<string> => {
-    const tempMachineNameArray:Array<string> = []
-    if(!machines){
-      return []
-    }
-    machines.map((machine:Machine) => {
-      if(machine.name){
-      tempMachineNameArray.push(machine.name)
-      }
-    })
-    return tempMachineNameArray
-  }
-
-
 
   return (
-    <div style={modalPosition} className={classes.paper}>
-    <h2 id="modal-title">Please confirm your booking</h2>
-    <h3 id="modal-description">
-      Date: {formattedDate(start)}
-    </h3>
-    <h3 id="modal-description">
-      start: {formattedTime(start)}
-    </h3>
-    <h3 id="modal-description">
-      end: {formattedTime(end)}
-    </h3>
-    <div>
-      {machines.length >=1 ? <RadioButtonsGroup radioButtonLabels={machinesNames()} groupLabel={'Please select a machine'} setValue={setMachineName} value={machineName}/> : <p>There is no registered machine. Please register any machine at first.</p>}
+    <div style={modalPosition} className={classes.wrapper}>
+      <h2 id="modal-title">Please confirm your booking</h2>
+      <h3 id="modal-description">Machine: {machineName}</h3>
+      <h3 id="modal-description">Date: {formattedDate(start)}</h3>
+      <h3 id="modal-description">start: {formattedTime(start)}</h3>
+      <h3 id="modal-description">end: {formattedTime(end)}</h3>
+      <div className={classes.modal_buttons}>
+        <Button variant="contained" color="primary" onClick={() => registerHandler()}>
+          Register
+        </Button>
+        <Button variant="contained" color="primary" onClick={() => setOpenModal(false)}>
+          Cancel
+        </Button>
+      </div>
     </div>
-    <div>
-      <Button variant="contained" color="primary" onClick={()=>registerHandler()}>Register</Button>
-      <Button variant="contained" color="primary" onClick={()=>setOpenModal(false)}>Cancel</Button>
-    </div>
-  </div>
-
-
   )
 }
 
 export default BookingModalContent
-

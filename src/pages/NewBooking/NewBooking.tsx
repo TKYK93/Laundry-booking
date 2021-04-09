@@ -1,14 +1,55 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import BottomNav from '../../components/BottomNav'
 import Header from '../../components/Header'
+import RadioButtonsGroup from '../../components/RadioButtonsGroup'
+import { AppState } from '../../redux/store'
 import BookingCalendar from './BookingCalendar'
+import { Machine } from '../../models/Machine'
 
 const NewBooking: React.FC = () => {
+  const machines = useSelector((state: AppState) => state.machineState.machines)
+  const [machineName, setMachineName] = useState<string>(machines[0].name)
+
+  const machinesNames = (): Array<string> => {
+    const tempMachineNameArray: Array<string> = []
+    if (!machines) {
+      return []
+    }
+    machines.map((machine: Machine) => {
+      if (machine.name) {
+        tempMachineNameArray.push(machine.name)
+      }
+    })
+    return tempMachineNameArray
+  }
+
+  const checkMachineId = (): string | undefined => {
+    let machineId: string | undefined = undefined
+    machines.forEach((machine) => {
+      if (machine.name === machineName) {
+        machineId = machine.id
+      }
+    })
+    return machineId
+  }
+
   return (
     <div className="NewBooking">
       <Header title={'New Booking'} />
-      <p>NewBooking</p>
-      <BookingCalendar />
+      <div>
+        {machines.length >= 1 ? (
+          <RadioButtonsGroup
+            radioButtonLabels={machinesNames()}
+            groupLabel={'Please select a machine'}
+            setValue={setMachineName}
+            value={machineName}
+          />
+        ) : (
+          <p>There is no registered machine. Please register any machine at first.</p>
+        )}
+      </div>
+      <BookingCalendar machineName={machineName} machineId={checkMachineId()} />
       <BottomNav />
     </div>
   )
