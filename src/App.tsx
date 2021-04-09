@@ -12,6 +12,8 @@ import { useSelector } from 'react-redux'
 import { AppState } from './redux/store'
 import AvailableMachines from './pages/Setting/AvailableMachines'
 import AddMachines from './pages/Setting/AddMachines'
+import GroupId from './pages/Setting/GroupId'
+import AccountUsers from './pages/Setting/AccountUsers'
 
 const App: React.FC = () => {
   const isAuthenticated = useSelector((state: AppState) => state.userState.loginUser.isAuthenticated)
@@ -33,6 +35,8 @@ const App: React.FC = () => {
             component={AvailableMachines}
           />
           <PrivateRoute exact path={'/setting/addMachines'} isAuthenticated={isAuthenticated} component={AddMachines} />
+          <PrivateRoute exact path={'/setting/groupId'} isAuthenticated={isAuthenticated} component={GroupId} />
+          <PrivateRoute exact path={'/setting/users'} isAuthenticated={isAuthenticated} component={AccountUsers} />
         </Switch>
       </div>
     </Router>
