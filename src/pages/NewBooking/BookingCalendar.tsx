@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
@@ -10,6 +9,7 @@ import BookingModalContent from './BookingModalContent'
 import { useDispatch, useSelector } from 'react-redux'
 import { getGroupBookingFromFirebase } from '../../redux/BookingRedux/bookingThunk'
 import { AppState } from '../../redux/store'
+import { db } from '../../firebase'
 
 const dummyEvents: Booking[] = [
   {
@@ -31,7 +31,7 @@ const dummyEvents: Booking[] = [
 ]
 
 interface BookingCalendarProps {
-  machineName: string
+  machineName: string | undefined
   machineId: string | undefined
 }
 
@@ -61,9 +61,14 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({ machineName, machineI
   }
 
   useEffect(() => {
-    if (machineId) {
-      dispatch(getGroupBookingFromFirebase(machineId))
+    if (!machineId) {
+      return
     }
+    const doc = db.collection('bookings')
+    const unsubscribe = doc.onSnapshot((docSnapshot) => {
+      dispatch(getGroupBookingFromFirebase(machineId))
+    })
+    return () => unsubscribe()
   }, [machineId])
 
   return (
