@@ -7,6 +7,8 @@ import { Booking } from '../../models/Booking'
 import { getPersonalBookingFromFirebase } from '../../redux/BookingRedux/bookingThunk'
 import { AppState } from '../../redux/store'
 import BookingListItem from './BookingListItem'
+import { db } from '../../firebase'
+import { getMachinesFromFirebase } from '../../redux/machineRedux/machineThunk'
 
 const BookingList: React.FC = () => {
   const dispatch = useDispatch()
@@ -31,11 +33,16 @@ const BookingList: React.FC = () => {
   ]
 
   useEffect(() => {
-    dispatch(getPersonalBookingFromFirebase())
+    dispatch(getMachinesFromFirebase())
+    const doc = db.collection('bookings')
+    const unsubscribe = doc.onSnapshot((docSnapshot) => {
+      dispatch(getPersonalBookingFromFirebase())
+    })
+    return () => unsubscribe()
   }, [])
 
   return (
-    <div className="BookingList">
+    <div className="bookingList">
       <Header title={'BookingList'} />
       <List>
         {currBookingList.length >= 1 ? (
