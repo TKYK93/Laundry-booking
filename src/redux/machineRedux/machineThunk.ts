@@ -11,12 +11,21 @@ export const addMachineThroughFirebase = (
   const machineId = db.collection('_').doc().id
   const groupId = getState().userState.loginUser.groupId
   const docRef = db.collection('machines').doc()
-  docRef.set({
-    id: machineId,
-    groupId: groupId,
-    name: name,
-    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-  })
+  docRef
+    .set({
+      id: machineId,
+      groupId: groupId,
+      name: name,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    })
+    .then(() => {
+      window.alert('Successefully added the new machine!')
+    })
+    .catch((error) => {
+      const errorCode = error.code
+      const errorMessage = error.message
+      window.alert('error code: ' + errorCode + ' because ' + errorMessage)
+    })
 }
 
 export const getMachinesFromFirebase = (): ThunkAction<void, RootReducer, undefined, Action<string>> => async (

@@ -1,8 +1,9 @@
 import { Button, createStyles, makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router'
 import { Booking } from '../../models/Booking'
-import { addBookingThroughFirebase } from '../../redux/BookingRedux/bookingThunk'
+import { addBookingThroughFirebase, getPersonalBookingFromFirebase } from '../../redux/BookingRedux/bookingThunk'
 import { AppState } from '../../redux/store'
 import { formattedDate, formattedTime } from '../../utils'
 
@@ -34,7 +35,7 @@ interface BookingModalContentProps {
   start: string | undefined
   end: string | undefined
   machineId: string | undefined
-  machineName: string
+  machineName: string | undefined
   setOpenModal: (openModal) => void
 }
 
@@ -73,8 +74,9 @@ const BookingModalContent: React.FC<BookingModalContentProps> = ({
       machineId: machineId,
     }
 
-   await dispatch(addBookingThroughFirebase(bookingData))
-   await setOpenModal(false)
+    await dispatch(addBookingThroughFirebase(bookingData))
+    await dispatch(getPersonalBookingFromFirebase())
+    await setOpenModal(false)
   }
 
   return (

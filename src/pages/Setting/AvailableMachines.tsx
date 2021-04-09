@@ -15,9 +15,8 @@ const AvailableMachines: React.FC = () => {
     dispatch(getMachinesFromFirebase())
   }, [])
   return (
-    <div className="AvailableMachines">
+    <div className="availableMachines">
       <Header title={'Available Machines'} />
-      <p>AvailableMachines</p>
       {currentMachines.length >= 1 ? (
         currentMachines.map((machine: Machine, index: number) => <p key={`machine${index}`}>{machine.name}</p>)
       ) : (

@@ -9,7 +9,8 @@ import { Machine } from '../../models/Machine'
 
 const NewBooking: React.FC = () => {
   const machines = useSelector((state: AppState) => state.machineState.machines)
-  const [machineName, setMachineName] = useState<string>(machines[0].name)
+  const defaultMachineName = machines.length >= 1 ? machines[0].name : undefined
+  const [machineName, setMachineName] = useState<string | undefined>(defaultMachineName)
 
   const machinesNames = (): Array<string> => {
     const tempMachineNameArray: Array<string> = []
@@ -37,19 +38,21 @@ const NewBooking: React.FC = () => {
   return (
     <div className="NewBooking">
       <Header title={'New Booking'} />
-      <div>
-        {machines.length >= 1 ? (
+
+      {machineName ? (
+        <div>
           <RadioButtonsGroup
             radioButtonLabels={machinesNames()}
             groupLabel={'Please select a machine'}
             setValue={setMachineName}
             value={machineName}
           />
-        ) : (
-          <p>There is no registered machine. Please register any machine at first.</p>
-        )}
-      </div>
-      <BookingCalendar machineName={machineName} machineId={checkMachineId()} />
+          <BookingCalendar machineName={machineName} machineId={checkMachineId()} />
+        </div>
+      ) : (
+        <p>There is no registered machine. Please register any machine at first.</p>
+      )}
+
       <BottomNav />
     </div>
   )
