@@ -15,15 +15,15 @@ export interface BookingListItemProps {
 }
 
 const BookingListItem: React.FC<BookingListItemProps> = (props) => {
-  const currMachines = useSelector((state:AppState)=>state.machineState.machines)
+  const currMachines = useSelector((state: AppState) => state.machineState.machines)
 
   const findMachineName = (id: string): string | undefined => {
-    let machineName:string | undefined
-    if(id === undefined){
+    let machineName: string | undefined
+    if (id === undefined) {
       machineName = undefined
     } else {
-      currMachines.forEach((machine: Machine)=>{
-        if(machine.id === id){
+      currMachines.forEach((machine: Machine) => {
+        if (machine.id === id) {
           machineName = machine.name
         }
       })

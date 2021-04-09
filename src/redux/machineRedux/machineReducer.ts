@@ -11,12 +11,11 @@ export const initialState: MachineState = {
 
 export const MachineReducer = (state = initialState, action: MachineActions): MachineState => {
   switch (action.type) {
-
     case 'GET_MACHINES':
       return { machines: action.machines }
-    
+
     case 'CLEAR_MACHINES':
-        return {...state, ...initialState}
+      return { ...state, ...initialState }
 
     default:
       return state

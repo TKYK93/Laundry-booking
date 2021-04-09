@@ -11,13 +11,12 @@ export const addMachineThroughFirebase = (
   const machineId = db.collection('_').doc().id
   const groupId = getState().userState.loginUser.groupId
   const docRef = db.collection('machines').doc()
-  docRef
-    .set({
-      id: machineId,
-      groupId: groupId,
-      name: name,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    })
+  docRef.set({
+    id: machineId,
+    groupId: groupId,
+    name: name,
+    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+  })
 }
 
 export const getMachinesFromFirebase = (): ThunkAction<void, RootReducer, undefined, Action<string>> => async (
@@ -31,10 +30,10 @@ export const getMachinesFromFirebase = (): ThunkAction<void, RootReducer, undefi
     console.log('No such document in the database!')
   } else {
     const tempMachineArray: Machine[] = []
-    await doc.forEach((machine) =>  {
-        const result = machine.data() as Machine
-        tempMachineArray.push(result)
-       })
+    await doc.forEach((machine) => {
+      const result = machine.data() as Machine
+      tempMachineArray.push(result)
+    })
     await dispatch(getMachines(tempMachineArray))
   }
 }

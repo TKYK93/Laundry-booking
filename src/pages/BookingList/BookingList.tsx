@@ -10,13 +10,13 @@ import BookingListItem from './BookingListItem'
 
 const BookingList: React.FC = () => {
   const dispatch = useDispatch()
-  const currBookingList = useSelector((state:AppState) => state.bookingState.personalBookings)
+  const currBookingList = useSelector((state: AppState) => state.bookingState.personalBookings)
   const dummyListData: Booking[] = [
     {
       id: '1-1',
       start: '2021-03-02T10:00',
       end: '2021-03-02T11:00',
-      groupId: "1",
+      groupId: '1',
       personId: '1',
       machineId: '1',
     },
@@ -24,27 +24,25 @@ const BookingList: React.FC = () => {
       id: '1-2',
       start: '2021-03-03T11:00',
       end: '2021-03-03T12:00',
-      groupId: "1",
+      groupId: '1',
       personId: '1',
       machineId: '2',
     },
   ]
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getPersonalBookingFromFirebase())
-  },[])
+  }, [])
 
   return (
     <div className="BookingList">
       <Header title={'BookingList'} />
       <List>
-        {currBookingList.length >= 1 ? 
-        currBookingList.map((item, index) => (
-          <BookingListItem {...item} key={`bookingItem${index}`} />
-        ))
-      :
-      <p>You have no booking.</p>
-      }
+        {currBookingList.length >= 1 ? (
+          currBookingList.map((item, index) => <BookingListItem {...item} key={`bookingItem${index}`} />)
+        ) : (
+          <p>You have no booking.</p>
+        )}
       </List>
       <BottomNav />
     </div>

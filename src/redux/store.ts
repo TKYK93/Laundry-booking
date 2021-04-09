@@ -23,7 +23,7 @@ const composeReduxDevToolsEnhancers =
 export const rootReducer = combineReducers<AppState>({
   userState: userReducer,
   machineState: MachineReducer,
-  bookingState: BookingReducer
+  bookingState: BookingReducer,
 })
 
 const persistConfig = {

@@ -4,12 +4,12 @@ import { Machine } from '../../models/Machine'
 export const getMachines = (machines: Machine[]) =>
   ({
     type: 'GET_MACHINES',
-    machines
+    machines,
   } as const)
 
-  export const clearMachines = () =>
+export const clearMachines = () =>
   ({
-    type: 'CLEAR_MACHINES'
+    type: 'CLEAR_MACHINES',
   } as const)
 
 export type MachineActions = ActionType<typeof getMachines> | ActionType<typeof clearMachines>

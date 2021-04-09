@@ -4,7 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
-import { Button, Drawer, List, ListItem, ListItemText } from '@material-ui/core'
+import { Button, Drawer, List, ListItem } from '@material-ui/core'
 import { useDispatch } from 'react-redux'
 import { logoutThroughFirebase } from '../redux/userRedux/userThunk'
 
@@ -37,9 +37,6 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
         </Toolbar>
         <Drawer style={{ width: '30%' }} anchor="left" open={showSidebarMenu}>
           <List>
-            <ListItem>
-              <ListItemText>Test</ListItemText>
-            </ListItem>
             <ListItem>
               <Button
                 onClick={() => {
