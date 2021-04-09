@@ -29,7 +29,13 @@ const RadioButtonsGroup: React.FC<RadioButtonsGroupProps> = ({ radioButtonLabels
   return (
     <FormControl component="fieldset">
       <FormLabel component="legend">{groupLabel}</FormLabel>
-      <RadioGroup className={classes.radioButtons} aria-label={groupLabel} name={groupLabel} value={value} onChange={handleChange}>
+      <RadioGroup
+        className={classes.radioButtons}
+        aria-label={groupLabel}
+        name={groupLabel}
+        value={value}
+        onChange={handleChange}
+      >
         {radioButtonLabels.map((radioButtonLabel, index) => (
           <FormControlLabel
             key={`${groupLabel}-${index}`}

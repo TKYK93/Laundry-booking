@@ -1,17 +1,26 @@
 import React from 'react'
-import { ListItem, ListItemText } from '@material-ui/core'
+import { ListItem, ListItemText, makeStyles, SvgIcon, SvgIconTypeMap } from '@material-ui/core'
 import { useHistory } from 'react-router'
 import { useSelector } from 'react-redux'
 import { AppState } from '../../redux/store'
+import { OverridableComponent } from '@material-ui/core/OverridableComponent'
+
+const useStyles = makeStyles(() => ({
+  text: {
+    marginLeft: '3%',
+  },
+}))
 
 export interface SettingListItemProps {
   title: string
   path?: string
   admin: boolean
+  icon: OverridableComponent<SvgIconTypeMap<Record<string, unknown>, 'svg'>>
   handler?: () => void
 }
 
 const SettingListItem: React.FC<SettingListItemProps> = (props) => {
+  const classes = useStyles()
   const loginUser = useSelector((state: AppState) => state.userState.loginUser)
   const history = useHistory()
   const itemClickHandler = (path: string | undefined) => {
@@ -22,13 +31,14 @@ const SettingListItem: React.FC<SettingListItemProps> = (props) => {
     }
   }
   return !props.admin || loginUser.isAdmin ? (
-    <ListItem button>
-      <ListItemText
-        primary={props.title}
-        onClick={() => {
-          itemClickHandler(props.path)
-        }}
-      />
+    <ListItem
+      button
+      onClick={() => {
+        itemClickHandler(props.path)
+      }}
+    >
+      <SvgIcon component={props.icon} />
+      <ListItemText className={classes.text} primary={props.title} />
     </ListItem>
   ) : (
     <></>
