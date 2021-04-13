@@ -40,7 +40,7 @@ const RadioButtonsGroup: React.FC<RadioButtonsGroupProps> = ({ radioButtonLabels
           <FormControlLabel
             key={`${groupLabel}-${index}`}
             value={radioButtonLabel}
-            control={<Radio />}
+            control={<Radio color="primary"/>}
             label={radioButtonLabel}
           />
         ))}
