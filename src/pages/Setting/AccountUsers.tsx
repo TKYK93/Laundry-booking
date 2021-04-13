@@ -25,7 +25,6 @@ const AccountUsers: React.FC = () => {
       } else {
         await doc.forEach((user) => {
           const result = user.data() as User
-          console.log(result)
           setAccountUsers((prev) => [...prev, result])
         })
         await setIsLoading(false)

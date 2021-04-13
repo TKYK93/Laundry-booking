@@ -82,7 +82,6 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({ machineName, machineI
         selectable={true}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         events={currGroupBookings}
-        eventClick={(e) => console.log('e:', e)}
         dateClick={dateClickHandler}
       />
       <Modal
