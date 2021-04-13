@@ -6,8 +6,16 @@ import RadioButtonsGroup from '../../components/RadioButtonsGroup'
 import { AppState } from '../../redux/store'
 import BookingCalendar from './BookingCalendar'
 import { Machine } from '../../models/Machine'
+import { makeStyles } from '@material-ui/core'
+
+const useStyles = makeStyles(() => ({
+  calendar_wrapper: {
+    margin: '3%',
+  },
+}))
 
 const NewBooking: React.FC = () => {
+  const classes = useStyles()
   const machines = useSelector((state: AppState) => state.machineState.machines)
   const defaultMachineName = machines.length >= 1 ? machines[0].name : undefined
   const [machineName, setMachineName] = useState<string | undefined>(defaultMachineName)
@@ -36,11 +44,11 @@ const NewBooking: React.FC = () => {
   }
 
   return (
-    <div className="NewBooking">
+    <div className="newBooking">
       <Header title={'New Booking'} />
 
       {machineName ? (
-        <div>
+        <div className={classes.calendar_wrapper}>
           <RadioButtonsGroup
             radioButtonLabels={machinesNames()}
             groupLabel={'Please select a machine'}
