@@ -37,8 +37,7 @@ const SignUp: React.FC = () => {
   }
 
   return (
-    <div className="SignUp">
-      <Header title={'Sign Up'} />
+    <div className="signUp">
       <p>SignUp</p>
 
       <form className={classes.wrapper} noValidate autoComplete="off">
