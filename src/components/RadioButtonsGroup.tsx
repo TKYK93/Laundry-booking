@@ -5,7 +5,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
 import FormLabel from '@material-ui/core/FormLabel'
 import { makeStyles } from '@material-ui/core'
-import classes from '*.module.css'
 
 interface RadioButtonsGroupProps {
   radioButtonLabels: Array<string>
@@ -40,7 +39,7 @@ const RadioButtonsGroup: React.FC<RadioButtonsGroupProps> = ({ radioButtonLabels
           <FormControlLabel
             key={`${groupLabel}-${index}`}
             value={radioButtonLabel}
-            control={<Radio color="primary"/>}
+            control={<Radio color="secondary" />}
             label={radioButtonLabel}
           />
         ))}

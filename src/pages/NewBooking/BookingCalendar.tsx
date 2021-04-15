@@ -3,32 +3,13 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction'
-import { Booking } from '../../models/Booking'
 import { Modal } from '@material-ui/core'
 import BookingModalContent from './BookingModalContent'
 import { useDispatch, useSelector } from 'react-redux'
 import { getGroupBookingFromFirebase } from '../../redux/BookingRedux/bookingThunk'
 import { AppState } from '../../redux/store'
 import { db } from '../../firebase'
-
-const dummyEvents: Booking[] = [
-  {
-    id: '1-1',
-    start: '2021-04-02T10:00',
-    end: '2021-04-02T11:00',
-    groupId: '1',
-    personId: '1',
-    machineId: '1',
-  },
-  {
-    id: '1-2',
-    start: '2021-04-03T11:00',
-    end: '2021-04-04T12:00',
-    groupId: '1',
-    personId: '1',
-    machineId: '2',
-  },
-]
+import { myColors } from '../../config'
 
 interface BookingCalendarProps {
   machineName: string | undefined
@@ -65,7 +46,7 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({ machineName, machineI
       return
     }
     const doc = db.collection('bookings')
-    const unsubscribe = doc.onSnapshot((docSnapshot) => {
+    const unsubscribe = doc.onSnapshot(() => {
       dispatch(getGroupBookingFromFirebase(machineId))
     })
     return () => unsubscribe()
@@ -73,8 +54,8 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({ machineName, machineI
 
   return (
     <div className="BookingCalendar">
-      <p>Selected Machine: {machineName}</p>
       <FullCalendar
+        height="auto"
         initialView="timeGridWeek"
         slotDuration="01:00:00"
         slotMinTime="07:00:00"
@@ -82,6 +63,7 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({ machineName, machineI
         selectable={true}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         events={currGroupBookings}
+        eventColor={myColors.myColor5}
         dateClick={dateClickHandler}
       />
       <Modal

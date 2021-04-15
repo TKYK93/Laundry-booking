@@ -1,5 +1,5 @@
 import React from 'react'
-import { Drawer, List, makeStyles } from '@material-ui/core'
+import { Drawer, List } from '@material-ui/core'
 import { useDispatch } from 'react-redux'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import CancelPresentationIcon from '@material-ui/icons/CancelPresentation'

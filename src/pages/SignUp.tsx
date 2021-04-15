@@ -2,7 +2,6 @@ import { TextField, Button, makeStyles, Switch, FormControlLabel } from '@materi
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
-import Header from '../components/Header'
 import { signUpThroughFirebase } from '../redux/userRedux/userThunk'
 
 const useStyles = makeStyles(() => ({

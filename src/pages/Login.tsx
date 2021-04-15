@@ -2,7 +2,6 @@ import { TextField, Button, makeStyles } from '@material-ui/core'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
-import { getMachinesFromFirebase } from '../redux/machineRedux/machineThunk'
 import { loginThroughFirebase } from '../redux/userRedux/userThunk'
 
 const useStyles = makeStyles(() => ({

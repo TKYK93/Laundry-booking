@@ -3,7 +3,6 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import BottomNav from '../../components/BottomNav'
 import Header from '../../components/Header'
-import { Booking } from '../../models/Booking'
 import { getPersonalBookingFromFirebase } from '../../redux/BookingRedux/bookingThunk'
 import { AppState } from '../../redux/store'
 import BookingListItem from './BookingListItem'
@@ -13,29 +12,10 @@ import { getMachinesFromFirebase } from '../../redux/machineRedux/machineThunk'
 const BookingList: React.FC = () => {
   const dispatch = useDispatch()
   const currBookingList = useSelector((state: AppState) => state.bookingState.personalBookings)
-  const dummyListData: Booking[] = [
-    {
-      id: '1-1',
-      start: '2021-03-02T10:00',
-      end: '2021-03-02T11:00',
-      groupId: '1',
-      personId: '1',
-      machineId: '1',
-    },
-    {
-      id: '1-2',
-      start: '2021-03-03T11:00',
-      end: '2021-03-03T12:00',
-      groupId: '1',
-      personId: '1',
-      machineId: '2',
-    },
-  ]
-
   useEffect(() => {
     dispatch(getMachinesFromFirebase())
     const doc = db.collection('bookings')
-    const unsubscribe = doc.onSnapshot((docSnapshot) => {
+    const unsubscribe = doc.onSnapshot(() => {
       dispatch(getPersonalBookingFromFirebase())
     })
     return () => unsubscribe()

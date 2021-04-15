@@ -1,7 +1,6 @@
 import { Button, createStyles, makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
 import { Booking } from '../../models/Booking'
 import { addBookingThroughFirebase, getPersonalBookingFromFirebase } from '../../redux/BookingRedux/bookingThunk'
 import { AppState } from '../../redux/store'

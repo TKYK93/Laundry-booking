@@ -21,7 +21,7 @@ export const addBookingThroughFirebase = (
         id: docRef.id,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       })
-      .then((result) => {
+      .then(() => {
         return
       })
       .catch((error) => {
