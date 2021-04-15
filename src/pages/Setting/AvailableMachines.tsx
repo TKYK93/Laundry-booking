@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core'
+import { Button, makeStyles } from '@material-ui/core'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
@@ -7,7 +7,14 @@ import { Machine } from '../../models/Machine'
 import { getMachinesFromFirebase } from '../../redux/machineRedux/machineThunk'
 import { AppState } from '../../redux/store'
 
+const useStyles = makeStyles(() => ({
+  availableMachines: {
+    textAlign: 'center',
+  },
+}))
+
 const AvailableMachines: React.FC = () => {
+  const classes = useStyles()
   const history = useHistory()
   const dispatch = useDispatch()
   const currentMachines = useSelector((state: AppState) => state.machineState.machines)
@@ -15,7 +22,7 @@ const AvailableMachines: React.FC = () => {
     dispatch(getMachinesFromFirebase())
   }, [])
   return (
-    <div className="availableMachines">
+    <div className={classes.availableMachines}>
       <Header title={'Available Machines'} />
       {currentMachines.length >= 1 ? (
         currentMachines.map((machine: Machine, index: number) => <p key={`machine${index}`}>{machine.name}</p>)

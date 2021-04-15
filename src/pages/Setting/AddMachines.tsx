@@ -6,6 +6,9 @@ import Header from '../../components/Header'
 import { addMachineThroughFirebase, getMachinesFromFirebase } from '../../redux/machineRedux/machineThunk'
 
 const useStyles = makeStyles(() => ({
+  addMachines: {
+    textAlign: 'center',
+  },
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
@@ -48,7 +51,7 @@ const AddMachines: React.FC = () => {
     }
   }
   return (
-    <div className="addMachines">
+    <div className={classes.addMachines}>
       <Header title={'Add Machines'} />
       <p>Please add your laundry machines</p>
       <form className={classes.addMachines_form} noValidate autoComplete="off">

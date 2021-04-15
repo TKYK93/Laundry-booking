@@ -1,16 +1,23 @@
-import { Button } from '@material-ui/core'
+import { Button, makeStyles } from '@material-ui/core'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import Header from '../../components/Header'
 import { AppState } from '../../redux/store'
 
+const useStyles = makeStyles(() => ({
+  groupId: {
+    textAlign: 'center',
+  },
+}))
+
 const GroupId: React.FC = () => {
+  const classes = useStyles()
   const history = useHistory()
   const loginUser = useSelector((state: AppState) => state.userState.loginUser)
 
   return (
-    <div className="GroupId">
+    <div className={classes.groupId}>
       <Header title={'GroupId'} />
       <p>
         Your Group ID is "{loginUser.groupId}". Please share your ID with your account user. This Group ID is required

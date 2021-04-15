@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core'
+import { Button, makeStyles } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
@@ -8,7 +8,20 @@ import { AppState } from '../../redux/store'
 import { db } from '../../firebase'
 import LoadingProgress from '../../components/Progress'
 
+const useStyles = makeStyles(() => ({
+  accountUsers: {
+    textAlign: 'center',
+  },
+  users: {
+    display: 'flex',
+    flexDirection: 'column',
+    margin: '3% auto',
+    textAlign: 'center',
+  },
+}))
+
 const AccountUsers: React.FC = () => {
+  const classes = useStyles()
   const history = useHistory()
   const loginUser = useSelector((state: AppState) => state.userState.loginUser)
   const [accountUsers, setAccountUsers] = useState<User[]>([])
@@ -34,12 +47,16 @@ const AccountUsers: React.FC = () => {
   }, [])
 
   return (
-    <div className="accountUsers">
+    <div className={classes.accountUsers}>
       <Header title={'People in Your Account'} />
       {isLoading ? (
         <LoadingProgress />
       ) : accountUsers.length >= 1 ? (
-        accountUsers.map((user: User, index: number) => <p key={`accountUser${index}`}>{user.email}</p>)
+        <div className={classes.users}>
+          {accountUsers.map((user: User, index: number) => (
+            <p key={`accountUser${index}`}>{user.email}</p>
+          ))}
+        </div>
       ) : (
         <p>There are no other people expect other than you in this account.</p>
       )}
