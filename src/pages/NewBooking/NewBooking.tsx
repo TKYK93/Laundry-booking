@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import BottomNav from '../../components/BottomNav'
 import Header from '../../components/Header'
 import RadioButtonsGroup from '../../components/RadioButtonsGroup'
 import { AppState } from '../../redux/store'
@@ -44,7 +43,7 @@ const NewBooking: React.FC = () => {
   }
 
   return (
-    <div className="newBooking">
+    <div className={'newBooking'}>
       <Header title={'New Booking'} />
 
       {machineName ? (
@@ -60,8 +59,6 @@ const NewBooking: React.FC = () => {
       ) : (
         <p>There is no registered machine. Please register any machine at first.</p>
       )}
-
-      <BottomNav />
     </div>
   )
 }

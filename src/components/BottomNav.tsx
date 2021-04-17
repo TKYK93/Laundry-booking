@@ -6,6 +6,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import SettingsIcon from '@material-ui/icons/Settings'
 import { useHistory } from 'react-router'
 
+// not uded because moved to SideBarMenu
 const BottomNav: React.FC = () => {
   const pathName = window.location.pathname
   const history = useHistory()

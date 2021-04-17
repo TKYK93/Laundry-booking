@@ -2,7 +2,6 @@ import React from 'react'
 import { List } from '@material-ui/core'
 import SettingListItem, { SettingListItemProps } from './SettingListItem'
 import Header from '../../components/Header'
-import BottomNav from '../../components/BottomNav'
 import LocalLaundryServiceIcon from '@material-ui/icons/LocalLaundryService'
 import AddBoxIcon from '@material-ui/icons/AddBox'
 import PeopleIcon from '@material-ui/icons/People'
@@ -44,7 +43,6 @@ const Setting: React.FC = () => {
           <SettingListItem {...item} key={`settingListItem${index}`} />
         ))}
       </List>
-      <BottomNav />
     </div>
   )
 }

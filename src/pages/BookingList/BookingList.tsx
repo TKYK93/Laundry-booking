@@ -1,7 +1,6 @@
-import { List } from '@material-ui/core'
+import { List, makeStyles } from '@material-ui/core'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import BottomNav from '../../components/BottomNav'
 import Header from '../../components/Header'
 import { getPersonalBookingFromFirebase } from '../../redux/BookingRedux/bookingThunk'
 import { AppState } from '../../redux/store'
@@ -22,7 +21,7 @@ const BookingList: React.FC = () => {
   }, [])
 
   return (
-    <div className="bookingList">
+    <div className={"bookingList"}>
       <Header title={'BookingList'} />
       <List>
         {currBookingList.length >= 1 ? (
@@ -31,7 +30,6 @@ const BookingList: React.FC = () => {
           <p>You have no booking.</p>
         )}
       </List>
-      <BottomNav />
     </div>
   )
 }
