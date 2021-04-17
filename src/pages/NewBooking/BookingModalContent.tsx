@@ -30,7 +30,8 @@ const modalPosition = {
   transform: 'translate(-50%, -50%)',
 }
 
-interface BookingModalContentProps {
+export interface BookingModalContentProps {
+  forwardRef?: React.Ref<HTMLDivElement | HTMLParagraphElement>
   start: string | undefined
   end: string | undefined
   machineId: string | undefined
@@ -39,6 +40,7 @@ interface BookingModalContentProps {
 }
 
 const BookingModalContent: React.FC<BookingModalContentProps> = ({
+  forwardRef,
   start,
   end,
   machineId,
@@ -79,7 +81,7 @@ const BookingModalContent: React.FC<BookingModalContentProps> = ({
   }
 
   return (
-    <div style={modalPosition} className={classes.wrapper}>
+    <div style={modalPosition} className={classes.wrapper} ref={forwardRef} tabIndex={0}>
       <h2 id="modal-title">Please confirm your booking</h2>
       <h3 id="modal-description">Machine: {machineName}</h3>
       <h3 id="modal-description">Date: {formattedDate(start)}</h3>

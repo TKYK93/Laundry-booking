@@ -4,7 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction'
 import { Modal } from '@material-ui/core'
-import BookingModalContent from './BookingModalContent'
+import BookingModalContent, { BookingModalContentProps } from './BookingModalContent'
 import { useDispatch, useSelector } from 'react-redux'
 import { getGroupBookingFromFirebase } from '../../redux/BookingRedux/bookingThunk'
 import { AppState } from '../../redux/store'
@@ -52,6 +52,21 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({ machineName, machineI
     return () => unsubscribe()
   }, [machineId])
 
+  // Recieving <BookingModalContent> and rendering it with forwardRef
+  // Otherwise, an error about ref apprears
+  const RefForwarderForContent = React.forwardRef<HTMLDivElement, BookingModalContentProps>((props, ref) => {
+    return (
+      <BookingModalContent
+        start={props.start}
+        end={props.end}
+        machineId={props.machineId}
+        machineName={props.machineName}
+        setOpenModal={props.setOpenModal}
+        forwardRef={ref}
+      />
+    )
+  })
+
   return (
     <div className="BookingCalendar">
       <FullCalendar
@@ -73,7 +88,7 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({ machineName, machineI
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <BookingModalContent
+        <RefForwarderForContent
           start={start}
           end={end}
           machineId={machineId}
