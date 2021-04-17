@@ -23,6 +23,7 @@ const useStyles = makeStyles(() => ({
     width: '60%',
     marginLeft: 'auto',
     marginRight: 'auto',
+    backgroundColor: '#ffffff',
   },
   addMachines_form_button: {
     width: '60%',

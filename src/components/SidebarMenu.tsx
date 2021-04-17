@@ -39,7 +39,8 @@ const SidebarMenu: React.FC<SidebarMenuProps> = (props) => {
     {
       title: 'Setting',
       icon: SettingsIcon,
-      handler: () => {props.setShowSidebarMenu(false)
+      handler: () => {
+        props.setShowSidebarMenu(false)
         history.replace('/setting')
       },
     },
@@ -56,7 +57,12 @@ const SidebarMenu: React.FC<SidebarMenuProps> = (props) => {
   ]
 
   return (
-    <Drawer style={{ width: '40%' }} anchor="left" open={props.showSidebarMenu} onClose={() => props.setShowSidebarMenu(false)}>
+    <Drawer
+      style={{ width: '40%' }}
+      anchor="left"
+      open={props.showSidebarMenu}
+      onClose={() => props.setShowSidebarMenu(false)}
+    >
       <List>
         {SidebarMenuItems.map((menuItem, index) => (
           <SidebarMenuItem {...menuItem} key={`sidebarMenu${index}`} />

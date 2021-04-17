@@ -5,6 +5,9 @@ import { useHistory } from 'react-router'
 import { loginThroughFirebase } from '../redux/userRedux/userThunk'
 
 const useStyles = makeStyles(() => ({
+  login: {
+    textAlign: 'center',
+  },
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
@@ -33,7 +36,7 @@ const Login: React.FC = () => {
   }
 
   return (
-    <div className="Login">
+    <div className={classes.login}>
       <p>Login</p>
       <form className={classes.wrapper} noValidate autoComplete="off">
         <TextField className={classes.textFiled} id="email" label="email" onChange={(e) => setEmail(e.target.value)} />

@@ -5,7 +5,9 @@ import { useHistory } from 'react-router'
 import { signUpThroughFirebase } from '../redux/userRedux/userThunk'
 
 const useStyles = makeStyles(() => ({
-  switch: {},
+  signUp: {
+    textAlign: 'center',
+  },
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
@@ -36,9 +38,8 @@ const SignUp: React.FC = () => {
   }
 
   return (
-    <div className="signUp">
+    <div className={classes.signUp}>
       <p>SignUp</p>
-
       <form className={classes.wrapper} noValidate autoComplete="off">
         <FormControlLabel
           control={
