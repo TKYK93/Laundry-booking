@@ -65,6 +65,7 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({ machineName, machineI
         events={currGroupBookings}
         eventColor={myColors.myColor5}
         dateClick={dateClickHandler}
+        allDaySlot={false}
       />
       <Modal
         open={openModal}
