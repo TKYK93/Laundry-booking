@@ -1,4 +1,4 @@
-import React  from 'react'
+import React from 'react'
 import './App.css'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import NewBooking from './pages/NewBooking/NewBooking'
@@ -28,7 +28,7 @@ const App: React.FC = () => {
       secondary: {
         main: myColors.myColor5,
       },
-      type: darkMode ? "dark" : "light",
+      type: darkMode ? 'dark' : 'light',
     },
   })
 

@@ -5,8 +5,8 @@ import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import SidebarMenu from './SidebarMenu'
-import Brightness7Icon from "@material-ui/icons/Brightness7"
-import Brightness4Icon from "@material-ui/icons/Brightness4"
+import Brightness7Icon from '@material-ui/icons/Brightness7'
+import Brightness4Icon from '@material-ui/icons/Brightness4'
 import { useDispatch } from 'react-redux'
 import { setDarkModeOff, setDarkModeOn } from '../redux/darkModeRedux/darkModeActions'
 import { makeStyles } from '@material-ui/core'
@@ -28,11 +28,11 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
   const [darkMode, setDarkMode] = useState<boolean>(false)
   const handleDarkModeOn = () => {
     dispatch(setDarkModeOn())
-    setDarkMode(true);
+    setDarkMode(true)
   }
   const handleDarkModeOff = () => {
     dispatch(setDarkModeOff())
-    setDarkMode(false);
+    setDarkMode(false)
   }
 
   return (
@@ -54,14 +54,14 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
             {title}
           </Typography>
           {darkMode ? (
-        <IconButton color="inherit" onClick={handleDarkModeOff} className={classes.darkModeButton}>
-          <Brightness7Icon />
-        </IconButton>
-      ) : (
-        <IconButton color="inherit" onClick={handleDarkModeOn} className={classes.darkModeButton}>
-          <Brightness4Icon />
-        </IconButton>
-      )}
+            <IconButton color="inherit" onClick={handleDarkModeOff} className={classes.darkModeButton}>
+              <Brightness7Icon />
+            </IconButton>
+          ) : (
+            <IconButton color="inherit" onClick={handleDarkModeOn} className={classes.darkModeButton}>
+              <Brightness4Icon />
+            </IconButton>
+          )}
         </Toolbar>
         <SidebarMenu setShowSidebarMenu={setShowSidebarMenu} showSidebarMenu={showSidebarMenu} />
       </AppBar>

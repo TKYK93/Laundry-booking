@@ -5,7 +5,7 @@ export const setDarkModeOn = () =>
     type: 'SET_DARKMODE_ON',
   } as const)
 
-  export const setDarkModeOff = () =>
+export const setDarkModeOff = () =>
   ({
     type: 'SET_DARKMODE_OFF',
   } as const)
