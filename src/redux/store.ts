@@ -5,11 +5,13 @@ import storage from 'redux-persist/lib/storage'
 import { userReducer, UserState } from './userRedux/userReducer'
 import { MachineReducer, MachineState } from './machineRedux/machineReducer'
 import { BookingReducer, BookingState } from './BookingRedux/bookingReducer'
+import { DarkModeReducer, DarkModeState } from './darkModeRedux/darkModeRedcuer'
 
 export type AppState = {
   userState: UserState
   machineState: MachineState
   bookingState: BookingState
+  darkModeState: DarkModeState
 }
 
 interface ExtendedWindow extends Window {
@@ -24,12 +26,13 @@ export const rootReducer = combineReducers<AppState>({
   userState: userReducer,
   machineState: MachineReducer,
   bookingState: BookingReducer,
+  darkModeState: DarkModeReducer,
 })
 
 const persistConfig = {
   key: 'laundry-booking',
   storage: storage,
-  whitelist: ['userState', 'machineState', 'BookingReducer'],
+  whitelist: ['userState', 'machineState', 'BookingReducer', 'DarkModeReducer'],
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 

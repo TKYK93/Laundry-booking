@@ -1,4 +1,4 @@
-import React from 'react'
+import React  from 'react'
 import './App.css'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import NewBooking from './pages/NewBooking/NewBooking'
@@ -17,19 +17,20 @@ import AccountUsers from './pages/Setting/AccountUsers'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core'
 import { myColors } from './config'
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: myColors.myColor3,
-    },
-    secondary: {
-      main: myColors.myColor5,
-    },
-  },
-})
-
 const App: React.FC = () => {
   const isAuthenticated = useSelector((state: AppState) => state.userState.loginUser.isAuthenticated)
+  const darkMode = useSelector((state: AppState) => state.darkModeState.darkMode)
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: myColors.myColor3,
+      },
+      secondary: {
+        main: myColors.myColor5,
+      },
+      type: darkMode ? "dark" : "light",
+    },
+  })
 
   return (
     <ThemeProvider theme={theme}>
