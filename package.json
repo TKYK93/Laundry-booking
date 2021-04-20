@@ -46,7 +46,8 @@
     "/.eslintrc.js"
   ],
   "lint-staged": {
-    "*.js,ts,tsx": [
+    "src/**/*.{js,ts,tsx}": [
+      "prettier --write",
       "eslint --fix",
       "git add"
     ]
