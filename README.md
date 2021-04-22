@@ -12,3 +12,6 @@ Please set your own firebase config in your local repository after clonig this r
 npm install
 npm start
 ```
+
+## Demo
+https://laundry-booking-ca453.web.app
