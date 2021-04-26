@@ -48,6 +48,7 @@ const NewBooking: React.FC = () => {
 
       {machineName ? (
         <div className={classes.calendar_wrapper}>
+          {/* Calendar is switched based on selected raido button */}
           <RadioButtonsGroup
             radioButtonLabels={machinesNames()}
             groupLabel={'Please select a machine'}
