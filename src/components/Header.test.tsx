@@ -13,7 +13,6 @@ describe('Header test', () => {
         <Header title={title} />
       </Provider>
     )
-    screen.debug()
     expect(screen.getByText(title)).toBeInTheDocument()
   })
 })
