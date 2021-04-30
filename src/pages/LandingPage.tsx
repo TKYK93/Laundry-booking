@@ -1,4 +1,4 @@
-import { Button, makeStyles, AppBar, Toolbar, Typography, Grid, Paper } from '@material-ui/core'
+import { Button, makeStyles, AppBar, Toolbar, Typography, Grid } from '@material-ui/core'
 import React from 'react'
 import { useHistory } from 'react-router'
 import washMachinePic from '../assets/washMachines.jpg'
