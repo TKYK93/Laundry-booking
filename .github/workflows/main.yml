@@ -17,4 +17,4 @@ jobs:
         run: npm run build
 
       - name: Deploy to Firebase
-        run: npm run deploy --token=${{1//0cP-RQtJ16j01CgYIARAAGAwSNwF-L9IrEf7gfT_EIOgCggg7kAFyx4U9z17xQK5N0M7LkV3bUncNeDV0GVXv85RiZTRJzJ8ZL7E}}
+        run: npm run deploy --token=${{secrets.FIREBASE_TOKEN}}
