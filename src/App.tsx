@@ -16,6 +16,7 @@ import GroupId from './pages/Setting/GroupId'
 import AccountUsers from './pages/Setting/AccountUsers'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core'
 import { myColors } from './config'
+import LandingPage from './pages/LandingPage'
 
 const App: React.FC = () => {
   const isAuthenticated = useSelector((state: AppState) => state.userState.loginUser.isAuthenticated)
@@ -37,7 +38,8 @@ const App: React.FC = () => {
       <Router>
         <div className="app">
           <Switch>
-            <Redirect exact from="/" to="/login" />
+            <Redirect exact from="/" to="/home" />
+            <Route exact path={'/home'} component={LandingPage}></Route>
             <PublicRoute exact path={'/login'} component={Login} isAuthenticated={isAuthenticated} />
             <Route exact path={'/signUp'} component={SignUp}></Route>
             <PrivateRoute exact path={'/bookingList'} component={BookingList} isAuthenticated={isAuthenticated} />
