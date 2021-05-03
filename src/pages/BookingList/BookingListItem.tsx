@@ -3,7 +3,7 @@ import { Card, CardContent, ListItem, ListItemText, makeStyles } from '@material
 import { useDispatch, useSelector } from 'react-redux'
 import { AppState } from '../../redux/store'
 import { Machine } from '../../models/Machine'
-import { formattedTime } from '../../utils'
+import { formattedDate, formattedTime } from '../../utils'
 import { deleteBookingFromFirebase } from '../../redux/BookingRedux/bookingThunk'
 import DeleteIcon from '@material-ui/icons/Delete'
 
@@ -56,6 +56,7 @@ const BookingListItem: React.FC<BookingListItemProps> = (props) => {
       <CardContent>
         <ListItem>
           <ListItemText primary={`machine: ${machineName}`} />
+          <ListItemText primary={`date ${formattedDate(props.start)}`} />
           <ListItemText primary={`start ${formattedTime(props.start)}`} />
           <ListItemText primary={`end ${formattedTime(props.end)}`} />
           <DeleteIcon onClick={() => deleteHandler(props.id)} />
