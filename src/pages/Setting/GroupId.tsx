@@ -20,7 +20,7 @@ const GroupId: React.FC = () => {
     <div className={classes.groupId}>
       <Header title={'GroupId'} />
       <p>
-        Your Group ID is "{loginUser.groupId}". Please share your ID with your account user. This Group ID is required
+        Your Group ID is "<strong>{loginUser.groupId}</strong>". <br />Please share your ID with your account user. This Group ID is required
         when your account user create their account.
       </p>
       <Button onClick={() => history.goBack()}>Back To Setting Page</Button>
