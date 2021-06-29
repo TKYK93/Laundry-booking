@@ -5,9 +5,10 @@ import { useHistory } from 'react-router'
 import Header from '../../components/Header'
 import { addMachineThroughFirebase, getMachinesFromFirebase } from '../../redux/machineRedux/machineThunk'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   addMachines: {
     textAlign: 'center',
+    color: theme.palette.text.primary,
   },
   wrapper: {
     display: 'flex',

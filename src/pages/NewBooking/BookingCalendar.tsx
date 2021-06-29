@@ -10,6 +10,7 @@ import { getGroupBookingFromFirebase } from '../../redux/BookingRedux/bookingThu
 import { AppState } from '../../redux/store'
 import { db } from '../../firebase'
 import { myColors } from '../../config'
+import "./BookingCalendar.css"
 
 interface BookingCalendarProps {
   machineName: string | undefined

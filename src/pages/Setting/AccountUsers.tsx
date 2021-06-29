@@ -8,9 +8,10 @@ import { AppState } from '../../redux/store'
 import { db } from '../../firebase'
 import LoadingProgress from '../../components/Progress'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   accountUsers: {
     textAlign: 'center',
+    color: theme.palette.text.primary,
   },
   users: {
     display: 'flex',

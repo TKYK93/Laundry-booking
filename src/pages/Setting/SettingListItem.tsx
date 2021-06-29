@@ -5,10 +5,14 @@ import { useSelector } from 'react-redux'
 import { AppState } from '../../redux/store'
 import { OverridableComponent } from '@material-ui/core/OverridableComponent'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   text: {
     marginLeft: '3%',
+    color: theme.palette.text.primary,
   },
+  svgIcon: {
+    color: theme.palette.text.secondary
+  }
 }))
 
 export interface SettingListItemProps {
@@ -37,7 +41,7 @@ const SettingListItem: React.FC<SettingListItemProps> = (props) => {
         itemClickHandler(props.path)
       }}
     >
-      <SvgIcon component={props.icon} />
+      <SvgIcon className={classes.svgIcon} component={props.icon} />
       <ListItemText className={classes.text} primary={props.title} />
     </ListItem>
   ) : (

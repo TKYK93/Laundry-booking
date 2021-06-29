@@ -7,9 +7,10 @@ import { Machine } from '../../models/Machine'
 import { getMachinesFromFirebase } from '../../redux/machineRedux/machineThunk'
 import { AppState } from '../../redux/store'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   availableMachines: {
     textAlign: 'center',
+    color: theme.palette.text.primary,
   },
 }))
 

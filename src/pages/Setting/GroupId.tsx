@@ -5,9 +5,10 @@ import { useHistory } from 'react-router'
 import Header from '../../components/Header'
 import { AppState } from '../../redux/store'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   groupId: {
     textAlign: 'center',
+    color: theme.palette.text.primary,
   },
 }))
 

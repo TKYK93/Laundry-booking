@@ -7,7 +7,10 @@ import BookingCalendar from './BookingCalendar'
 import { Machine } from '../../models/Machine'
 import { makeStyles } from '@material-ui/core'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
+  newBooking: {
+    color: theme.palette.text.primary
+  },
   calendar_wrapper: {
     margin: '3%',
   },
@@ -43,7 +46,7 @@ const NewBooking: React.FC = () => {
   }
 
   return (
-    <div className={'newBooking'}>
+    <div className={classes.newBooking}>
       <Header title={'New Booking'} />
 
       {machineName ? (

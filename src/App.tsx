@@ -14,9 +14,11 @@ import AvailableMachines from './pages/Setting/AvailableMachines'
 import AddMachines from './pages/Setting/AddMachines'
 import GroupId from './pages/Setting/GroupId'
 import AccountUsers from './pages/Setting/AccountUsers'
-import { createMuiTheme, ThemeProvider } from '@material-ui/core'
+import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core'
 import { myColors } from './config'
 import LandingPage from './pages/LandingPage'
+
+
 
 const App: React.FC = () => {
   const isAuthenticated = useSelector((state: AppState) => state.userState.loginUser.isAuthenticated)
@@ -33,10 +35,20 @@ const App: React.FC = () => {
     },
   })
 
+  const useStyles = makeStyles(() => ({
+    app: {
+      backgroundColor: darkMode ? theme.palette.background.default : '#F4F9E9',
+      height: '100vh',
+    },
+  }))
+
+  const classes = useStyles()
+
+
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <div className="app">
+        <div className={classes.app}>
           <Switch>
             <Redirect exact from="/" to="/home" />
             <Route exact path={'/home'} component={LandingPage}></Route>
