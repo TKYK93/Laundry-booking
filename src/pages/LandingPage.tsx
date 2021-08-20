@@ -59,6 +59,7 @@ const useStyles = makeStyles(() => ({
 const LandingPage: React.FC = () => {
   const classes = useStyles()
   const hisotry = useHistory()
+  console.log(process.env)
 
   return (
     <div className="LandingPage">
