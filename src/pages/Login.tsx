@@ -30,6 +30,7 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState<string>('')
 
   const loginHandler = async (e) => {
+    console.log("env test: " + process.env.REACT_APP_ENV_TEST)
     await e.preventDefault()
     await dispatch(loginThroughFirebase(email, password))
     await history.push('/bookingList')
