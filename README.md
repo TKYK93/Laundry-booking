@@ -3,7 +3,7 @@ The following frameworks, plugins, and libraries are used:
 - React
 - TypeScript
 - Redux
-- Firebase
+- Firebase (automatic deploy by Github Action)
 
 ## Functions
 As a normal user, you can ...
