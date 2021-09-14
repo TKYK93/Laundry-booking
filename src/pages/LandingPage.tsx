@@ -60,7 +60,6 @@ const LandingPage: React.FC = () => {
   const classes = useStyles()
   const hisotry = useHistory()
   console.log(process.env)
-  console.log("screts : " + secrets.FIREBASE_APP_ID)
 
   return (
     <div className="LandingPage">
