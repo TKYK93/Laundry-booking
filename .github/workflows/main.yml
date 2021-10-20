@@ -13,8 +13,19 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
-      - run: npm install
-      - run: npm run build
+      - name: Build
+        run: | 
+          npm install
+          npm run build
+        env: 
+          REACT_APP_API_KEY: "AIzaSyD0KrHqvxsbE2N7nkdOeIE7rVCu2Cmi_mM"
+          REACT_APP_AUTH_DOMAIN: "laundry-booking-ca453.firebaseapp.com"
+          REACT_APP_DATABASE_URL: "https://laundry-booking-ca453.firebaseio.com"
+          REACT_APP_PROJECT_ID: "laundry-booking-ca453"
+          REACT_APP_STORAGE_BUCKET: "laundry-booking-ca453.appspot.com"
+          REACT_APP_MESSAGING_SENDER_ID: "1071133209117"
+          REACT_APP_APP_ID: "1:1071133209117:web:e4cf97a031e2ae02a40cf4"
+          
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.FIREBASE_TOKEN }}"
