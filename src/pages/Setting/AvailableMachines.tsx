@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.primary,
   },
+  noMachineMessage: {
+    marginLeft: '1.5rem',
+  },
 }))
 
 const AvailableMachines: React.FC = () => {
@@ -28,7 +31,7 @@ const AvailableMachines: React.FC = () => {
       {currentMachines.length >= 1 ? (
         currentMachines.map((machine: Machine, index: number) => <p key={`machine${index}`}>{machine.name}</p>)
       ) : (
-        <p>There is no machine registered.</p>
+        <p className={classes.noMachineMessage}>There is no machine registered.</p>
       )}
       <Button onClick={() => history.goBack()}>Back To Setting Page</Button>
     </div>

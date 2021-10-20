@@ -1,4 +1,4 @@
-import { List } from '@material-ui/core'
+import { makeStyles, List } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Header from '../../components/Header'
@@ -9,7 +9,14 @@ import { db } from '../../firebase'
 import { getMachinesFromFirebase } from '../../redux/machineRedux/machineThunk'
 import LoadingProgress from '../../components/Progress'
 
+const useStyles = makeStyles(() => ({
+  NoBookMessage: {
+    marginLeft: '1.5rem',
+  },
+}))
+
 const BookingList: React.FC = () => {
+  const classes = useStyles()
   const dispatch = useDispatch()
   const currBookingList = useSelector((state: AppState) => state.bookingState.personalBookings)
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -31,13 +38,17 @@ const BookingList: React.FC = () => {
       {isLoading ? (
         <LoadingProgress />
       ) : (
-        <List>
+        <>
           {currBookingList.length >= 1 ? (
-            currBookingList.map((item, index) => <BookingListItem {...item} key={`bookingItem${index}`} />)
+            <List>
+              {currBookingList.map((item, index) => (
+                <BookingListItem {...item} key={`bookingItem${index}`} />
+              ))}
+            </List>
           ) : (
-            <p>You have no booking.</p>
+            <p className={classes.NoBookMessage}>You have no booking.</p>
           )}
-        </List>
+        </>
       )}
     </div>
   )
