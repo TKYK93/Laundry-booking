@@ -50,6 +50,10 @@ const useStyles = makeStyles(() => ({
   },
   girdImg: {
     width: '100%',
+    borderRadius: '5px',
+  },
+  gridText: {
+    fontSize: 'large',
   },
   rowWrapper: {
     backgroundColor: '#ffffff',
@@ -83,7 +87,7 @@ const LandingPage: React.FC = () => {
         <div className={classes.gridWrapper}>
           <Grid container className={classes.gridContainer} spacing={2}>
             <Grid item xs={6}>
-              You can book laundry machines in your apartment by your phone/PC only.
+              <p className={classes.gridText}>You can book laundry machines in your apartment only by your phone/PC.</p>
             </Grid>
             <Grid item xs={6}>
               <img src={bookingList} alt="bookingList" className={classes.girdImg} />
@@ -93,11 +97,11 @@ const LandingPage: React.FC = () => {
               <img src={newBooking} alt="laundryBooking" className={classes.girdImg} />
             </Grid>
             <Grid item xs={6}>
-              Your bookings in your apartment are shared!
+              <p className={classes.gridText}>Your bookings in your apartment are shared in the same apartment!</p>
             </Grid>
 
             <Grid item xs={6}>
-              Ofcourse machines can be added!
+              <p className={classes.gridText}>Machines can be added as well!</p>
             </Grid>
             <Grid item xs={6}>
               <img src={addNewMachines} alt="addNewMchines" className={classes.girdImg} />
